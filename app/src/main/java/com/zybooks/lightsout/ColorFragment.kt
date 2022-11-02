@@ -2,6 +2,7 @@ package com.zybooks.lightsout
 
 import android.content.Context
 import android.os.Bundle
+import android.text.TextUtils.replace
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -41,7 +42,6 @@ class ColorFragment : Fragment() {
         return binding.root
     }
 
-    //TODO: Once the color is selected, use the parentFragmentManager to replace this fragment with the GameFragment
     private fun onColorSelected(view: View) {
         val colorId = when (view.id) {
             R.id.radio_red -> R.color.red
@@ -54,6 +54,11 @@ class ColorFragment : Fragment() {
         val editor = sharedPref.edit()
         editor.putInt("color", colorId)
         editor.apply()
-
+        parentFragmentManager.commit {
+            replace<GameFragment>(R.id.fragment_container_view)
+            setReorderingAllowed(true)
+            addToBackStack("null") // name can be null
+        }
     }
+
 }
