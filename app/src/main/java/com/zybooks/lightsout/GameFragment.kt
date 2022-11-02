@@ -52,9 +52,19 @@ class GameFragment : Fragment() {
         binding.newGameButton.setOnClickListener { startGame() }
 
         //TODO: When the chooseColorButton is clicked (setOnClickListener), use the parentFragmentMana ger toreplace this fragment with the ColorFragment
-
+        binding.chooseColorButton.setOnClickListener {
+            parentFragmentManager.commit {
+                setReorderingAllowed(true)
+                replace<ColorFragment>(R.id.fragment_container_view)
+            }
+        }
         //TODO: When the helpButton is clicked, use the parentFragmentManager to replace this fragment with HelpFragment
-
+        binding.helpButton.setOnClickListener {
+            parentFragmentManager.commit {
+                setReorderingAllowed(true)
+                replace<HelpFragment>(R.id.fragment_container_view)
+            }
+        }
         return binding.root
     }
 
@@ -102,3 +112,4 @@ class GameFragment : Fragment() {
         }
     }
 }
+// created branch

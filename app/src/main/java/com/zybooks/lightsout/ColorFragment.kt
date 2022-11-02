@@ -54,6 +54,10 @@ class ColorFragment : Fragment() {
         val editor = sharedPref.edit()
         editor.putInt("color", colorId)
         editor.apply()
+            parentFragmentManager.commit {
+                setReorderingAllowed(true)
+                replace<GameFragment>(R.id.fragment_container_view)
+            }
+        }
 
     }
-}
